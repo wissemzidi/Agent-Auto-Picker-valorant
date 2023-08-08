@@ -1,0 +1,61 @@
+{
+  "preferredAgentMap": {
+    "Ascent": "astra",
+    "Bind": "breach",
+    "Breeze": "brimstone",
+    "Fracture": "",
+    "Haven": "",
+    "Icebox": "",
+    "Pearl": "",
+    "Split": ""
+  },
+
+  "pointsPos": [
+    [0, 100],
+    [0, 200],
+    [0, 300],
+    [0, 400]
+  ],
+
+  "mapsPixelsColors": {
+    "Ascent": [
+      [55, 168, 227],
+      [68, 174, 226],
+      [89, 178, 227],
+      [106, 177, 222],
+      [0, 0, 0]
+    ],
+    "Bind": [],
+    "Breeze": [],
+    "Fracture": [],
+    "Haven": [],
+    "Icebox": [],
+    "Pearl": [],
+    "Split": []
+  },
+
+  "agents": [
+    "astra",
+    "breach",
+    "brimstone",
+    "chamber",
+    "cypher",
+    "deadlock",
+    "fade",
+    "gekko",
+    "harbor",
+    "jett",
+    "kay/o",
+    "killjoy",
+    "neon",
+    "omen",
+    "phoenix",
+    "raze",
+    "reyna",
+    "sage",
+    "skye",
+    "sova",
+    "viper",
+    "yoru"
+  ]
+}
