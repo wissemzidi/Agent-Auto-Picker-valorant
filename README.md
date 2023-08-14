@@ -2,7 +2,13 @@
 
 ## [👀 Preview]
 
-<img src="./preview.png" alt="">
+
+<table>
+  <tr>
+    <td valign="top"><img src="./preview.png"/></td>
+    <td valign="top"><img src="./preview2.png"/></td>
+  </tr>
+</table>
 
 ---
 
