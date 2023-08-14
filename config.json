@@ -1,39 +1,20 @@
 {
-  "preferredAgentMap": {
-    "Ascent": "astra",
-    "Bind": "breach",
-    "Breeze": "brimstone",
-    "Fracture": "",
-    "Haven": "",
-    "Icebox": "",
-    "Pearl": "",
-    "Split": ""
+  "basePos": [540, 925],
+  "lockBtnPos": [950, 800],
+  "squaresXDiff": 85,
+  "squaresYDiff": 85,
+  "maps": {
+    "ascent": {
+      "preferredAgent": "cypher"
+    },
+    "bind": { "preferredAgent": "breach" },
+    "breeze": { "preferredAgent": "" },
+    "fracture": { "preferredAgent": "brimstone" },
+    "haven": { "preferredAgent": "" },
+    "icebox": { "preferredAgent": "" },
+    "pearl": { "preferredAgent": "" },
+    "split": { "preferredAgent": "gekko" }
   },
-
-  "pointsPos": [
-    [0, 100],
-    [0, 200],
-    [0, 300],
-    [0, 400]
-  ],
-
-  "mapsPixelsColors": {
-    "Ascent": [
-      [55, 168, 227],
-      [68, 174, 226],
-      [89, 178, 227],
-      [106, 177, 222],
-      [0, 0, 0]
-    ],
-    "Bind": [],
-    "Breeze": [],
-    "Fracture": [],
-    "Haven": [],
-    "Icebox": [],
-    "Pearl": [],
-    "Split": []
-  },
-
   "agents": [
     "astra",
     "breach",

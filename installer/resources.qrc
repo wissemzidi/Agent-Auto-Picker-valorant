@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="res">
+    <file>icon.ico</file>
+    <file>minimize.png</file>
+    <file>fullscreen.png</file>
+    <file>close.png</file>
+  </qresource>
+</RCC>
