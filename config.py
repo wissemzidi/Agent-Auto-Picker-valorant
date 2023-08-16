@@ -1,8 +1,8 @@
-from PyQt5.QtWidgets import QApplication, QWidget
-from pyautogui import locateOnScreen, size
+from PyQt5.QtWidgets import QApplication
+from pyautogui import locateOnScreen
 from PyQt5.uic import loadUi
 from threading import Thread
-import json
+from json import dumps
 
 
 def launchConfigFile():
@@ -101,7 +101,7 @@ def launchConfigFile():
 
         if len(stepExecuted) == 4:
             with open("config.json", "w") as f:
-                f.write(json.dumps(data))
+                f.write(dumps(data))
             fen.instructions.setText("Config Saved ✔")
         else:
             fen.instructions.setText("Config error ❌, try again")

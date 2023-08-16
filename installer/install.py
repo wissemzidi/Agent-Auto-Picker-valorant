@@ -33,13 +33,34 @@ def createShortcut(sourcePath, toPath, icon):
 
 
 def copyFolderToPrograms(installDir):
-    try:
-        installDir = os.path.join(installDir, "Agent Auto Picker")
-        src = os.path.join(os.getcwd(), "Agent Auto Picker")
-        shutil.copytree(src, installDir)
-        return True
-    except:
-        return False
+    # try:
+    installDir = os.path.join(installDir, "Agent Auto Picker")
+    src = os.path.join(os.getcwd(), "Agent Auto Picker")
+    # shutil.copytree(src, installDir)
+
+    def copy2_verbose(src, dst):
+        fen.files.setText(str(src))
+        shutil.copy2(src, dst)
+
+    shutil.copytree(src, installDir, copy_function=copy2_verbose)
+    fen.files.setText("")
+    return True
+
+
+# except:
+#     return False
+
+
+def createDesktopShortcut():
+    # try:
+    username = os.getlogin()
+    shortcutPath = f"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Agent Auto Picker test.lnk"
+    shutil.copy2(shortcutPath, f"C:\\Users\\{username}\\Desktop")
+    return True
+
+
+# except:
+#     return False
 
 
 def createAppShortcut(installDir):
@@ -51,25 +72,20 @@ def createAppShortcut(installDir):
         curdir = os.getcwd()
 
         # creating the shortcut and saving it
-        path = os.path.join(curdir, "Agent Auto Picker.lnk")
+        path = os.path.join(curdir, "Agent Auto Picker test.lnk")
 
-        createShortCut(
+        createShortcut(
             os.path.join(mainExecutablePath),
-            os.path.join(programsShortcutsPath, "Agent Auto Picker.lnk"),
+            os.path.join(programsShortcutsPath, "Agent Auto Picker test.lnk"),
             os.path.join(curdir, "icon.ico"),
-        )
-        os.rename(
-            os.path.join(programsShortcutsPath, "Agent Auto Picker.lnk"),
-            "Agent Auto Picker",
         )
         return True
     except:
         return False
 
 
-def install():
+def install(installDir):
     global fen
-    installDir = fen.dir.text()
     if not installDir:
         installDir = os.environ["ProgramFiles"]
     fen.close()
@@ -82,26 +98,28 @@ def install():
     fen.minimizeBtn.clicked.connect(minimize)
 
     fen.show()
+    fen.message.setText("Copying Agent Auto Picker Files")
     if not copyFolderToPrograms(installDir):
         fen.error.setText("Error: Failed to copy Agent Auto Picker")
         return
-    fen.progress.value(60)
+    fen.progress.setValue(60)
 
+    fen.message.setText("Creating Agent Auto Picker shortcut")
     if not createAppShortcut(installDir):
         fen.error.setText("Error: Failed to create Agent Auto Picker shortcut")
-        fen.progress.value(70)
         return
 
-    fen.progress.value(100)
+    if not createDesktopShortcut():
+        fen.error.setText("Error: Failed to create the desktop shortcut")
+
+    fen.message.setText("Agent Auto Picker installed successfully ✅")
+    fen.progress.setValue(100)
 
 
 def initFen(fenTitle):
     fen.setWindowTitle(fenTitle)
     fen.setWindowFlags(Qt.FramelessWindowHint)
     fen.setAttribute(Qt.WA_TranslucentBackground)
-
-    # set dynamic text
-    fen.dir.setText(str(os.environ["ProgramFiles"]))
 
     # rendering Images
     fen.exitBtn.setIcon(QIcon("close.png"))
@@ -155,22 +173,25 @@ def minimize():
 
 if __name__ == "__main__":
     # requesting admin privileges
-    if not isUserAdmin:
+    if not isUserAdmin():
         print("Requires Admin")
         runAsAdmin()
     else:
         App = QApplication(sys.argv)
         App.setWindowIcon(QIcon("icon.ico"))
-        fen = loadUi("installConfig.ui")
+        fen = loadUi("./installConfig.ui")
         initFen("Install Agent Auto Picker")
 
         fen.selectDirBtn.clicked.connect(selectDir)
-        fen.installBtn.clicked.connect(install)
+        fen.installBtn.clicked.connect(lambda: install(fen.dir.text()))
         fen.cancelBtn.clicked.connect(cancel)
         fen.resetBtn.clicked.connect(reset)
 
         fen.exitBtn.clicked.connect(lambda: exit(0))
         fen.minimizeBtn.clicked.connect(minimize)
+
+        # set dynamic text
+        fen.dir.setText(str(os.environ["ProgramFiles"]))
 
         fen.show()
         App.exec()

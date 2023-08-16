@@ -220,7 +220,7 @@ max-width: 40px;</string>
       <x>160</x>
       <y>70</y>
       <width>181</width>
-      <height>81</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -240,10 +240,10 @@ max-width: 40px;</string>
    <widget class="QProgressBar" name="progress">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>170</y>
+      <x>80</x>
+      <y>140</y>
       <width>401</width>
-      <height>91</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -259,7 +259,7 @@ max-width: 40px;</string>
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>380</y>
+      <y>300</y>
       <width>261</width>
       <height>51</height>
      </rect>
@@ -279,9 +279,9 @@ max-width: 40px;</string>
    <widget class="QLabel" name="error">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>280</y>
-      <width>341</width>
+      <x>30</x>
+      <y>240</y>
+      <width>451</width>
       <height>31</height>
      </rect>
     </property>
@@ -292,6 +292,54 @@ max-width: 40px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: red;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="message">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>451</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: green;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="files">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>370</y>
+      <width>451</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>

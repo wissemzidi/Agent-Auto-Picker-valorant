@@ -1,17 +1,15 @@
-from pyautogui import screenshot, locateOnScreen, size
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from pynput.mouse import Controller, Button
+from os.path import exists as isPathExists
+from pyautogui import locateOnScreen, size
 from PyQt5.QtGui import QIcon, QPixmap
 from config import launchConfigFile
-from os import startfile, path
+from json import dumps, loads
 from PyQt5.uic import loadUi
 from threading import Thread
 from PyQt5.QtCore import Qt
 from time import sleep
 from sys import exit
-import subprocess
-import json
-import os
 
 
 def main(mapName):
@@ -109,7 +107,7 @@ def initialiseScreenListener():
 
     while not executed:
         for mapName in mapsNames:
-            if path.exists(f"./assets/maps_pics/{mapName}.png"):
+            if isPathExists(f"./assets/maps_pics/{mapName}.png"):
                 if (
                     locateOnScreen(
                         f"./assets/maps_pics/{mapName}.png",
@@ -139,13 +137,13 @@ def changeAgent():
     newAgent = str(fen.agent.currentText()).lower()
     if newAgent == "none":
         newAgent = ""
-    if path.exists("./config.json"):
+    if isPathExists("./config.json"):
         if newAgent in agents or newAgent == "":
             with open("./config.json", "r") as f:
-                data = json.loads(f.read())
+                data = loads(f.read())
                 data["maps"][mapName]["preferredAgent"] = newAgent
             with open("./config.json", "w") as f:
-                f.write(json.dumps(data))
+                f.write(dumps(data))
             fen.msg.setText("✅ Reload required !")
         else:
             fen.msg.setText("agent not valid ❌")
@@ -218,15 +216,15 @@ def launchConfig():
 App = QApplication([])
 fen = loadUi("./ui/main.ui")
 
-if not path.exists("./config.json"):
+if not isPathExists("./config.json"):
     msg = QMessageBox.critical(
-        "Alert !", "config file not found ❌ please execute the config.exe script", "OK"
+        fen, "config file not found ❌ please execute the config.exe script", "OK"
     )
     launchConfig()
 
 # get config data from "config.json"
 with open("./config.json", "r") as f:
-    data = json.loads(f.read())
+    data = loads(f.read())
     agents = data["agents"]
     basePos = tuple(data["basePos"])
     lockBtnPos = tuple(data["lockBtnPos"])
