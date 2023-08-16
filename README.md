@@ -3,10 +3,8 @@
 ## [👀 Preview]
 
 
+<img src="./preview/Agent Auto Picker.gif">
 <table>
-    <tr>
-        <td valign="top"><img src="./preview/Agent Auto Picker.gif"></td>
-    </tr>
     <tr>
         <td valign="top"><img src="./preview/preview.png"/></td>
         <td valign="top"><img src="./preview/preview2.png"/></td>
