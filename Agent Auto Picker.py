@@ -1,8 +1,9 @@
 from pyautogui import screenshot, locateOnScreen, size
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from pynput.mouse import Controller, Button
-from os import startfile, path
 from PyQt5.QtGui import QIcon, QPixmap
+from config import launchConfigFile
+from os import startfile, path
 from PyQt5.uic import loadUi
 from threading import Thread
 from PyQt5.QtCore import Qt
@@ -10,6 +11,7 @@ from time import sleep
 from sys import exit
 import subprocess
 import json
+import os
 
 
 def main(mapName):
@@ -139,10 +141,10 @@ def changeAgent():
         newAgent = ""
     if path.exists("./config.json"):
         if newAgent in agents or newAgent == "":
-            with open("config.json", "r") as f:
+            with open("./config.json", "r") as f:
                 data = json.loads(f.read())
                 data["maps"][mapName]["preferredAgent"] = newAgent
-            with open("config.json", "w") as f:
+            with open("./config.json", "w") as f:
                 f.write(json.dumps(data))
             fen.msg.setText("✅ Reload required !")
         else:
@@ -170,6 +172,8 @@ def initFen(fenTitle):
     fen.exitBtn.setText("")
     fen.minimizeBtn.setIcon(QIcon("./assets/minimize.png"))
     fen.minimizeBtn.setText("")
+    fen.settingsBtn.setIcon(QIcon("./assets/setting.png"))
+    fen.settingsBtn.setText("")
     fen.appIcon.setPixmap(QPixmap("./assets/icon.ico"))
     fen.appIcon.setScaledContents(True)
 
@@ -202,6 +206,12 @@ def minimize():
     fen.showMinimized()
 
 
+
+def launchConfig():
+    fen.close()
+    launchConfigFile()
+
+
 ############## Main Program ##############
 
 
@@ -212,11 +222,10 @@ if not path.exists("./config.json"):
     msg = QMessageBox.critical(
         "Alert !", "config file not found ❌ please execute the config.exe script", "OK"
     )
-    subprocess.run(["config.py"])
-    exit()
+    launchConfig()
 
 # get config data from "config.json"
-with open("config.json", "r") as f:
+with open("./config.json", "r") as f:
     data = json.loads(f.read())
     agents = data["agents"]
     basePos = tuple(data["basePos"])
@@ -233,6 +242,7 @@ fen.setAgent.clicked.connect(changeAgent)
 fen.exitBtn.clicked.connect(exit)
 fen.exitBtn.clicked.connect(lambda: exit(0))
 fen.minimizeBtn.clicked.connect(minimize)
+fen.settingsBtn.clicked.connect(launchConfig)
 
 
 fen.show()

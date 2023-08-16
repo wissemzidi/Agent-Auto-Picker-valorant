@@ -516,6 +516,33 @@ background-color: transparent;</string>
      <string>Copyright 2023 ©️ wissemzidi</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="settingsBtn">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>60</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/src/setting.png) 0;
+
+width: 30px;
+min-width: 30px;
+max-width: 30px;
+
+height: 30px;
+min-height: 30px;
+max-height: 30px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>
