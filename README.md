@@ -4,9 +4,10 @@
 
 
 <table>
+    <td valign="top"><img src="./preview/Agent Auto Picker.gif"></td>
   <tr>
-    <td valign="top"><img src="./preview.png"/></td>
-    <td valign="top"><img src="./preview2.png"/></td>
+    <td valign="top"><img src="./preview/preview.png"/></td>
+    <td valign="top"><img src="./preview/preview2.png"/></td>
   </tr>
 </table>
 
